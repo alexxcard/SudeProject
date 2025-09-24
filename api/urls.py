@@ -7,6 +7,7 @@ from .views import (
 
 router = DefaultRouter()
 router.register(r"users", UserViewSet)
+router.register(r"projects", basename='projects', viewset=ProjectViewSet)
 router.register(r"projects", ProjectViewSet)
 router.register(r"tasks", TaskViewSet)
 router.register(r"incidents", IncidentViewSet)
