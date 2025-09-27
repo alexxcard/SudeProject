@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-6)=g1@+(^)s&gj3snw$##gdlqp&@!i-)$4ty8vmv1y@q(%-$ta
 DEBUG = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Tu frontend
+    "http://localhost:3001", # Tu frontend
 ]
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
