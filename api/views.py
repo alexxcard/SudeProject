@@ -7,6 +7,7 @@ from .serializers import (
 )
 
 
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -24,7 +25,7 @@ class UserViewSet(viewsets.ModelViewSet):
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]  # 👈 acceso libre para pruebas
 
 
 class TaskViewSet(viewsets.ModelViewSet):
