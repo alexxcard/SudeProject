@@ -51,10 +51,27 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = "__all__"
 
+
+
 class IncidentSerializer(serializers.ModelSerializer):
+    project = serializers.CharField(source="project.name")       # Nombre del proyecto
+    reporter = serializers.CharField(source="reporter.username") # Nombre de usuario del reportero
+    assignee = serializers.CharField(source="assignee.username", allow_null=True) # Nombre de usuario del asignado
+
     class Meta:
         model = Incident
-        fields = "__all__"
+        fields = [
+            "id",
+            "title",
+            "description",
+            "status",
+            "priority",
+            "project",
+            "reporter",
+            "assignee",
+            "created_at",
+            "updated_at",
+        ]
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
