@@ -7,7 +7,6 @@ from .serializers import (
 )
 
 
-
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -31,13 +30,12 @@ class ProjectViewSet(viewsets.ModelViewSet):
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
-    permission_classes = [IsAuthenticated]
-
+    permission_classes = [AllowAny] 
 
 class IncidentViewSet(viewsets.ModelViewSet):
     queryset = Incident.objects.all()
     serializer_class = IncidentSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny] 
 
 
 class SprintViewSet(viewsets.ModelViewSet):

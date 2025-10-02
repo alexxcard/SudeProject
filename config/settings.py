@@ -28,6 +28,11 @@ DEBUG = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3001", # Tu frontend
+
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3001",
 ]
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
