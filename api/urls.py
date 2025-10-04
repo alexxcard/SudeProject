@@ -2,7 +2,8 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
     UserViewSet, ProjectViewSet, TaskViewSet,
-    IncidentViewSet, SprintViewSet, CommentViewSet
+    IncidentViewSet, SprintViewSet, CommentViewSet,
+    dashboard_stats
 )
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
@@ -16,9 +17,10 @@ router.register(r"comments", CommentViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
+    path('dashboard/', dashboard_stats),
     path("api/auth/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/auth/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/tasks/", TaskViewSet.as_view({"get": "list"})),
-
+    
     
 ]

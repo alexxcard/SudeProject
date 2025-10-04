@@ -5,6 +5,9 @@ from .serializers import (
     UserSerializer, ProjectSerializer, TaskSerializer,
     IncidentSerializer, SprintSerializer, CommentSerializer
 )
+from rest_framework.permissions import AllowAny
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -20,7 +23,19 @@ class UserViewSet(viewsets.ModelViewSet):
             return [AllowAny()]
         # return [IsAuthenticated()]
         return [AllowAny()]
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def dashboard_stats(request):
+    incidencias_count = Incident.objects.count()
+    proyectos_count = Project.objects.count()
+    tareas_count = Task.objects.count()
 
+    data = {
+        "incidencias": incidencias_count,
+        "proyectos": proyectos_count,
+        "tareas": tareas_count,
+    }
+    return Response(data)
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
@@ -41,7 +56,7 @@ class IncidentViewSet(viewsets.ModelViewSet):
 class SprintViewSet(viewsets.ModelViewSet):
     queryset = Sprint.objects.all()
     serializer_class = SprintSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny] 
 
 
 class CommentViewSet(viewsets.ModelViewSet):
